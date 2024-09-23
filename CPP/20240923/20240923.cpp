@@ -15,9 +15,8 @@ int StringCount(const char* const inStr)
 int main()
 {
     const char* testStr = "AAAAAAAAAA";
-    int strSize = StringCount(testStr);
 
-    std::cout << "String size using StringCount : " << strSize << std::endl;
+    std::cout << "String size using StringCount : " << StringCount(testStr) << std::endl;
     std::cout << "String size using strlen : " << strlen(testStr) << std::endl;
 
     return 0;
