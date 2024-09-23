@@ -47,28 +47,92 @@ void NumberToString(char* outBuffer, int bufferSize, int value)
         outBuffer[i] = 48 + (value % 10); // 마지막 자리수를 문자로 변환
         value /= 10;
     }
+
+    return;
+}
+
+void MyPrintf(const char* const inPtr, ...)
+{
+    int chCount = 0;
+    int currentValueIdx = 1;
+    const int bufferSize = 10;
+    char strBuffer[bufferSize] = { 0 };
+    unsigned __int64 pValue = reinterpret_cast<unsigned __int64>(&inPtr);
+
+    while (inPtr[chCount])
+    {
+        if (inPtr[chCount] == '%')
+        {
+            chCount++;
+            switch (inPtr[chCount])
+            {
+            case 'd':
+            {
+                int value = *(reinterpret_cast<int*>(pValue + (8 * currentValueIdx)));
+                currentValueIdx++;
+
+                NumberToString(strBuffer, bufferSize, value);
+
+                for (int i = 0; i < NumberCount(value); i++)
+                {
+                    putchar(strBuffer[i]);
+                }
+                break;
+            }
+            case 'c':
+            {
+                char value = *(reinterpret_cast<char*>(pValue + (8 * currentValueIdx)));
+                currentValueIdx++;
+                putchar(value);
+                break;
+            }
+            case 's':
+            {
+                int strCount = 0;
+                char* value = *(reinterpret_cast<char**>(pValue + (8 * currentValueIdx)));
+                currentValueIdx++;
+                while (value[strCount] != '\0')
+                {
+                    putchar(value[strCount]);
+                    strCount++;
+                }
+                break;
+            }
+            default:
+                break;
+            }
+            chCount++;
+        }
+        else {
+            putchar(inPtr[chCount]);
+            chCount++;
+        }
+    }
+    return;
 }
 
 int main()
 {
-    const char* testStr = "AAAAAAAAAA";
+    //const char* testStr = "AAAAAAAAAA";
 
-    std::cout << "String size using StringCount : " << StringCount(testStr) << std::endl;
-    std::cout << "String size using strlen : " << strlen(testStr) << std::endl;
+    //std::cout << "String size using StringCount : " << StringCount(testStr) << std::endl;
+    //std::cout << "String size using strlen : " << strlen(testStr) << std::endl;
 
-    std::cout << 1 << "의 자릿수 크기는 : " << NumberCount(1) << std::endl;
-    std::cout << 12 << "의 자릿수 크기는 : " << NumberCount(12) << std::endl;
-    std::cout << 123 << "의 자릿수 크기는 : " << NumberCount(123) << std::endl;
-    std::cout << 1234 << "의 자릿수 크기는 : " << NumberCount(1234) << std::endl;
-    std::cout << 12345 << "의 자릿수 크기는 : " << NumberCount(12345) << std::endl;
-    std::cout << 123456 << "의 자릿수 크기는 : " << NumberCount(123456) << std::endl;
-    std::cout << 1234567 << "의 자릿수 크기는 : " << NumberCount(1234567) << std::endl;
-    
-    const int bufferSize = 10;
-    char strBuffer[bufferSize] = {0};
-    NumberToString(strBuffer, bufferSize, 252424);
+    //std::cout << 1 << "의 자릿수 크기는 : " << NumberCount(1) << std::endl;
+    //std::cout << 12 << "의 자릿수 크기는 : " << NumberCount(12) << std::endl;
+    //std::cout << 123 << "의 자릿수 크기는 : " << NumberCount(123) << std::endl;
+    //std::cout << 1234 << "의 자릿수 크기는 : " << NumberCount(1234) << std::endl;
+    //std::cout << 12345 << "의 자릿수 크기는 : " << NumberCount(12345) << std::endl;
+    //std::cout << 123456 << "의 자릿수 크기는 : " << NumberCount(123456) << std::endl;
+    //std::cout << 1234567 << "의 자릿수 크기는 : " << NumberCount(1234567) << std::endl;
+    //
+    //const int bufferSize = 10;
+    //char strBuffer[bufferSize] = {0};
+    //NumberToString(strBuffer, bufferSize, 252424);
 
-    std::cout << "str buffer의 문자열은 : " << strBuffer << std::endl;
+    //std::cout << "str buffer의 문자열은 : " << strBuffer << std::endl;
+
+    MyPrintf("%c,          %s, %d, %d, %d, %d, %d", 'C', "Test dlsese", 2131, 5757, 75757, 2231, 1326);
 
 
     return 0;
