@@ -1,4 +1,16 @@
-ï»¿#include <iostream>
+#pragma once
+#include<iostream>
+
+const int LINECOUNT = 50;
+const int NAMELEN = 10;
+
+int PlayerAttack = 0;
+int PlayerHp = 0;
+char PlayerName[NAMELEN] = "NONE";
+
+int MonsterAttack = 10;
+int MonsterHp = 100;
+char MonsterName[NAMELEN] = "NONE";
 
 int StringCount(const char* const inStr)
 {
@@ -13,16 +25,16 @@ int StringCount(const char* const inStr)
 }
 
 /**
- * ìˆ«ìì˜ ìë¦¿ìˆ˜ë¥¼ ê³„ì‚°í•˜ëŠ” í•¨ìˆ˜
+ * ¼ıÀÚÀÇ ÀÚ¸´¼ö¸¦ °è»êÇÏ´Â ÇÔ¼ö
  */
 int NumberCount(int inNum)
 {
-    // ìŒìˆ˜ë‚˜ 0ì¸ ê²½ìš° ì²˜ë¦¬
+    // À½¼ö³ª 0ÀÎ °æ¿ì Ã³¸®
     if (inNum <= 0) return 0;
 
     int result = 0;
 
-    // ìˆ«ìë¥¼ 10ìœ¼ë¡œ ë‚˜ëˆ„ë©´ì„œ ìë¦¿ìˆ˜ë¥¼ ì¹´ìš´íŠ¸
+    // ¼ıÀÚ¸¦ 10À¸·Î ³ª´©¸é¼­ ÀÚ¸´¼ö¸¦ Ä«¿îÆ®
     while (inNum > 0)
     {
         inNum /= 10;
@@ -33,8 +45,8 @@ int NumberCount(int inNum)
 }
 
 /**
- * ë¬¸ìë¥¼ í•©ì¹˜ëŠ” í•¨ìˆ˜
- * 
+ * ¹®ÀÚ¸¦ ÇÕÄ¡´Â ÇÔ¼ö
+ *
  */
 void PlusString(char* outBuffer, int bufferSize, int strCount, ...)
 {
@@ -60,18 +72,18 @@ void PlusString(char* outBuffer, int bufferSize, int strCount, ...)
 }
 
 /**
- * ìˆ«ìë¥¼ ë¬¸ìì—´ë¡œ ë³€í™˜í•˜ëŠ” í•¨ìˆ˜
+ * ¼ıÀÚ¸¦ ¹®ÀÚ¿­·Î º¯È¯ÇÏ´Â ÇÔ¼ö
  */
 void NumberToString(char* outBuffer, int bufferSize, int value)
 {
-    // ë²„í¼ í¬ê¸°ê°€ ìˆ«ìì˜ ìë¦¿ìˆ˜ë³´ë‹¤ ì‘ìœ¼ë©´ ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•ŠìŒ
+    // ¹öÆÛ Å©±â°¡ ¼ıÀÚÀÇ ÀÚ¸´¼öº¸´Ù ÀÛÀ¸¸é ¾Æ¹«°Íµµ ÇÏÁö ¾ÊÀ½
     if (bufferSize <= NumberCount(value)) return;
 
-    // ìˆ«ìì˜ ìë¦¿ìˆ˜ ê³„ì‚°
+    // ¼ıÀÚÀÇ ÀÚ¸´¼ö °è»ê
     const int numCount = NumberCount(value);
 
     for (int i = numCount - 1; i >= 0; --i) {
-        outBuffer[i] = 48 + (value % 10); // ë§ˆì§€ë§‰ ìë¦¬ìˆ˜ë¥¼ ë¬¸ìë¡œ ë³€í™˜
+        outBuffer[i] = 48 + (value % 10); // ¸¶Áö¸· ÀÚ¸®¼ö¸¦ ¹®ÀÚ·Î º¯È¯
         value /= 10;
     }
 
@@ -136,40 +148,4 @@ void MyPrintf(const char* const inPtr, ...)
         }
     }
     return;
-}
-
-int main()
-{
-    //const char* testStr = "AAAAAAAAAA";
-
-    //std::cout << "String size using StringCount : " << StringCount(testStr) << std::endl;
-    //std::cout << "String size using strlen : " << strlen(testStr) << std::endl;
-
-    //std::cout << 1 << "ì˜ ìë¦¿ìˆ˜ í¬ê¸°ëŠ” : " << NumberCount(1) << std::endl;
-    //std::cout << 12 << "ì˜ ìë¦¿ìˆ˜ í¬ê¸°ëŠ” : " << NumberCount(12) << std::endl;
-    //std::cout << 123 << "ì˜ ìë¦¿ìˆ˜ í¬ê¸°ëŠ” : " << NumberCount(123) << std::endl;
-    //std::cout << 1234 << "ì˜ ìë¦¿ìˆ˜ í¬ê¸°ëŠ” : " << NumberCount(1234) << std::endl;
-    //std::cout << 12345 << "ì˜ ìë¦¿ìˆ˜ í¬ê¸°ëŠ” : " << NumberCount(12345) << std::endl;
-    //std::cout << 123456 << "ì˜ ìë¦¿ìˆ˜ í¬ê¸°ëŠ” : " << NumberCount(123456) << std::endl;
-    //std::cout << 1234567 << "ì˜ ìë¦¿ìˆ˜ í¬ê¸°ëŠ” : " << NumberCount(1234567) << std::endl;
-    //
-    //const int bufferSize = 10;
-    //char strBuffer[bufferSize] = { 0 };
-    //NumberToString(strBuffer, bufferSize, 252424);
-
-    //std::cout << "str bufferì˜ ë¬¸ìì—´ì€ : " << strBuffer << std::endl;
-
-    MyPrintf("%c,          %s, %d, %d, %d,\n %d, %d", 'C', "Test dlsesedsdsdsdsd", 2131, 5757, 75757, 2231, 1326);
-    printf_s("\n");
-    printf_s("%c,          %s, %d, %d, %d, %d, %d\n", 'C', "Test dlsesedsdsdsdsd", 2131, 5757, 75757, 2231, 1326);
-
-    const int bufferSize = 100;
-    char strBuffer[bufferSize] = { 0 };
-
-    PlusString(strBuffer, bufferSize, 3, "AAAAAAAA", "BBBBB BBB", "C C C C C");
-
-    std::cout << "String after using PlusString function : " << strBuffer << std::endl;
-
-
-    return 0;
 }

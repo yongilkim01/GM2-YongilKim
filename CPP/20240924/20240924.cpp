@@ -1,4 +1,21 @@
-﻿#include <iostream>
+﻿// TextRpg000.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
+//
+#include <iostream>
+
+const int LINECOUNT = 50;
+
+const int NAMELEN = 10;
+
+// 절차지향 
+// 어떠한 현실적인 개념을 컴퓨터 세계로 끌고 들어온다.
+// 상태와 
+int PlayerAttack = 0;
+int PlayerHp = 0;
+char PlayerName[NAMELEN] = "NONE";
+
+int MonsterAttack = 10;
+int MonsterHp = 100;
+char MonsterName[NAMELEN] = "NONE";
 
 int StringCount(const char* const inStr)
 {
@@ -34,7 +51,7 @@ int NumberCount(int inNum)
 
 /**
  * 문자를 합치는 함수
- * 
+ *
  */
 void PlusString(char* outBuffer, int bufferSize, int strCount, ...)
 {
@@ -85,8 +102,10 @@ void MyPrintf(const char* const inPtr, ...)
     const int bufferSize = 10;
     char strBuffer[bufferSize] = { 0 };
     unsigned __int64 pValue = reinterpret_cast<unsigned __int64>(&inPtr);
+    char testStr[100] = { 0 };
+    int testStrIdx = 0;
 
-    while (inPtr[chCount])
+    while (inPtr[chCount] && chCount <= LINECOUNT)
     {
         if (inPtr[chCount] == '%')
         {
@@ -103,6 +122,7 @@ void MyPrintf(const char* const inPtr, ...)
                 for (int i = 0; i < NumberCount(value); i++)
                 {
                     putchar(strBuffer[i]);
+                    testStr[testStrIdx++] = strBuffer[i];
                 }
                 break;
             }
@@ -111,6 +131,7 @@ void MyPrintf(const char* const inPtr, ...)
                 char value = *(reinterpret_cast<char*>(pValue + (8 * currentValueIdx)));
                 currentValueIdx++;
                 putchar(value);
+                testStr[testStrIdx++] = value;
                 break;
             }
             case 's':
@@ -121,6 +142,7 @@ void MyPrintf(const char* const inPtr, ...)
                 while (value[strCount] != '\0')
                 {
                     putchar(value[strCount]);
+                    testStr[testStrIdx++] = value[strCount];
                     strCount++;
                 }
                 break;
@@ -132,44 +154,103 @@ void MyPrintf(const char* const inPtr, ...)
         }
         else {
             putchar(inPtr[chCount]);
+            testStr[testStrIdx++] = inPtr[chCount];
             chCount++;
         }
+
+        if (testStrIdx == LINECOUNT && inPtr[chCount] == '\n')
+        {
+            putchar('\n');
+            testStr[testStrIdx++] = '\n';
+            break;
+        }
+        else if (!inPtr[chCount] && testStrIdx < LINECOUNT)
+        {
+            for (int i = chCount; i <= LINECOUNT; i++)
+            {
+                putchar('-');
+                testStr[testStrIdx++] = '-';
+            }
+            putchar('\n');
+            testStr[testStrIdx++] = '\n';
+            break;
+        }
+        else if (testStrIdx == LINECOUNT)
+        {
+            putchar('\n');
+            testStr[testStrIdx++] = '\n';
+            break;
+        }
+
     }
+    //std::cout << "current count : " << testStr << std::endl;
+    //std::cout << "test string length : " << strlen(testStr) << std::endl;
     return;
+}
+
+
+// 아주 중요한
+void StrCopy(char* outArr, int bufferSize, const char* const inName)
+{
+    for (int i = 0; i < bufferSize; i += 1)
+    {
+        outArr[i] = 0;
+    }
+
+    // C스타일 글자 개수 세어주는 함수
+    int Size = strlen(inName);
+    outArr[0] = inName[0];
+    // strcpy_s()
+    for (int i = 0; i < Size; i++)
+    {
+        outArr[i] = inName[i];
+    }
+}
+
+void CreatePlayer(const char* const outPtr, int attack, int health)
+{
+    // char[100] = 300번지
+    StrCopy(PlayerName, NAMELEN, outPtr);
+    PlayerAttack = attack;
+    PlayerHp = health;
+}
+
+void CreateMonster(const char* const outPtr, int attack, int health)
+{
+    StrCopy(MonsterName, NAMELEN, outPtr);
+    MonsterAttack = attack;
+    MonsterHp = health;
+}
+
+void StatusRender(const char* name, int attack, int health)
+{
+    MyPrintf("%s Status -----------------------------------------------------------\n", name);
+    printf_s("공격력 : %d\n", attack);
+    printf_s("체력 : %d\n", health);
+    for (int i = 0; i < LINECOUNT; i += 1)
+    {
+        printf_s("-");
+    }
+    printf_s("\n");
+
+    //MyPrintf("-----------------------------------------------------------------------------------------------------------------------\n");
+}
+
+void PlayerStatusRender()
+{
+    StatusRender(PlayerName, PlayerAttack, PlayerHp);
+}
+
+void MonsterStatusRender()
+{
+    StatusRender(MonsterName, MonsterAttack, MonsterHp);
 }
 
 int main()
 {
-    //const char* testStr = "AAAAAAAAAA";
+    CreatePlayer("1", 10, 100);
+    CreateMonster("Orc", 10, 50);
 
-    //std::cout << "String size using StringCount : " << StringCount(testStr) << std::endl;
-    //std::cout << "String size using strlen : " << strlen(testStr) << std::endl;
-
-    //std::cout << 1 << "의 자릿수 크기는 : " << NumberCount(1) << std::endl;
-    //std::cout << 12 << "의 자릿수 크기는 : " << NumberCount(12) << std::endl;
-    //std::cout << 123 << "의 자릿수 크기는 : " << NumberCount(123) << std::endl;
-    //std::cout << 1234 << "의 자릿수 크기는 : " << NumberCount(1234) << std::endl;
-    //std::cout << 12345 << "의 자릿수 크기는 : " << NumberCount(12345) << std::endl;
-    //std::cout << 123456 << "의 자릿수 크기는 : " << NumberCount(123456) << std::endl;
-    //std::cout << 1234567 << "의 자릿수 크기는 : " << NumberCount(1234567) << std::endl;
-    //
-    //const int bufferSize = 10;
-    //char strBuffer[bufferSize] = { 0 };
-    //NumberToString(strBuffer, bufferSize, 252424);
-
-    //std::cout << "str buffer의 문자열은 : " << strBuffer << std::endl;
-
-    MyPrintf("%c,          %s, %d, %d, %d,\n %d, %d", 'C', "Test dlsesedsdsdsdsd", 2131, 5757, 75757, 2231, 1326);
-    printf_s("\n");
-    printf_s("%c,          %s, %d, %d, %d, %d, %d\n", 'C', "Test dlsesedsdsdsdsd", 2131, 5757, 75757, 2231, 1326);
-
-    const int bufferSize = 100;
-    char strBuffer[bufferSize] = { 0 };
-
-    PlusString(strBuffer, bufferSize, 3, "AAAAAAAA", "BBBBB BBB", "C C C C C");
-
-    std::cout << "String after using PlusString function : " << strBuffer << std::endl;
-
-
-    return 0;
+    PlayerStatusRender();
+    MonsterStatusRender();
 }
