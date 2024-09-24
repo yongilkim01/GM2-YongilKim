@@ -35,6 +35,32 @@ int NumberCount(int inNum)
 /**
  * 숫자를 문자열로 변환하는 함수
  */
+void PlusString(char* outBuffer, int bufferSize, int strCount, ...)
+{
+    int currentValueIdx = 3;
+    unsigned __int64 pValue = reinterpret_cast<unsigned __int64>(&outBuffer);
+    int argsLength = *(reinterpret_cast<int*>(pValue + 16));
+    int outStrCount = 0;
+
+    for (int i = 0; i < argsLength; i++)
+    {
+        char* value = *(reinterpret_cast<char**>(pValue + (8 * currentValueIdx)));
+        currentValueIdx++;
+        int inStrCount = 0;
+        while (value[inStrCount] != '\0')
+        {
+            outBuffer[outStrCount] = value[inStrCount];
+            outStrCount++;
+            inStrCount++;
+        }
+    }
+
+    return;
+}
+
+/**
+ * 숫자를 문자열로 변환하는 함수
+ */
 void NumberToString(char* outBuffer, int bufferSize, int value)
 {
     // 버퍼 크기가 숫자의 자릿수보다 작으면 아무것도 하지 않음
@@ -127,12 +153,21 @@ int main()
     //std::cout << 1234567 << "의 자릿수 크기는 : " << NumberCount(1234567) << std::endl;
     //
     //const int bufferSize = 10;
-    //char strBuffer[bufferSize] = {0};
+    //char strBuffer[bufferSize] = { 0 };
     //NumberToString(strBuffer, bufferSize, 252424);
 
     //std::cout << "str buffer의 문자열은 : " << strBuffer << std::endl;
 
-    MyPrintf("%c,          %s, %d, %d, %d, %d, %d", 'C', "Test dlsese", 2131, 5757, 75757, 2231, 1326);
+    MyPrintf("%c,          %s, %d, %d, %d,\n %d, %d", 'C', "Test dlsesedsdsdsdsd", 2131, 5757, 75757, 2231, 1326);
+    printf_s("\n");
+    printf_s("%c,          %s, %d, %d, %d, %d, %d\n", 'C', "Test dlsesedsdsdsdsd", 2131, 5757, 75757, 2231, 1326);
+
+    const int bufferSize = 100;
+    char strBuffer[bufferSize] = { 0 };
+
+    PlusString(strBuffer, bufferSize, 3, "AAAAAAAA", "BBBBB BBB", "C C C C C");
+
+    std::cout << "String after using PlusString function : " << strBuffer << std::endl;
 
 
     return 0;
