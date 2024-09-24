@@ -164,9 +164,10 @@ void MyPrintf(const char* const inPtr, ...)
             testStr[testStrIdx++] = '\n';
             break;
         }
-        else if (!inPtr[chCount] && testStrIdx < LINECOUNT)
+        else if (inPtr[chCount + 1] == '\n' && testStrIdx < LINECOUNT)
         {
-            for (int i = chCount; i <= LINECOUNT; i++)
+            int startIdx = testStrIdx;
+            for (int i = startIdx; i < LINECOUNT; i++)
             {
                 putchar('-');
                 testStr[testStrIdx++] = '-';
@@ -224,7 +225,7 @@ void CreateMonster(const char* const outPtr, int attack, int health)
 
 void StatusRender(const char* name, int attack, int health)
 {
-    MyPrintf("%s Status -----------------------------------------------------------\n", name);
+    printf_s("%s Status -----\n", name);
     printf_s("공격력 : %d\n", attack);
     printf_s("체력 : %d\n", health);
     for (int i = 0; i < LINECOUNT; i += 1)
@@ -248,7 +249,7 @@ void MonsterStatusRender()
 
 int main()
 {
-    CreatePlayer("1", 10, 100);
+    CreatePlayer("1232323233232333", 10, 100);
     CreateMonster("Orc", 10, 50);
 
     PlayerStatusRender();
