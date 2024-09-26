@@ -144,7 +144,7 @@ int main()
     Test1 = Test0*/;
 
     // 선공과 후공을 만드세요.
-    CreatePlayer("1", 10, 100, 20);
+    CreatePlayer("Player", 10, 100, 20);
     CreateMonster("Orc", 10, 100, 10);
 
     // 플레이어는 0~19
