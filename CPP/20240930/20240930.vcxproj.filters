@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="20240930.cpp" />
+    <ClCompile Include="EngineConst.cpp">
+      <Filter>0_Base</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineDebug.cpp">
+      <Filter>0_Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>1_Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="FightUnit.cpp">
+      <Filter>2_Contents\0_ContentsBase</Filter>
+    </ClCompile>
+    <ClCompile Include="StatusUnit.cpp">
+      <Filter>2_Contents\0_ContentsBase</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>2_Contents\1_Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>2_Contents\1_Actor</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>2_Contents\1_Actor\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="FightZone.cpp">
+      <Filter>2_Contents\2_Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Town.cpp">
+      <Filter>2_Contents\2_Map</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>2_Contents\2_Map</Filter>
+    </ClCompile>
+    <ClCompile Include="Zone.cpp">
+      <Filter>2_Contents\2_Map</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="0_Base">
+      <UniqueIdentifier>{e2f1a156-e28e-40e4-8a56-4ae7e484b768}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1_Engine">
+      <UniqueIdentifier>{5f3cf162-3f58-4133-bd4b-0beb1c752e57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_Contents">
+      <UniqueIdentifier>{3d386706-c3c4-47f8-85a8-031c55487c4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_Contents\0_ContentsBase">
+      <UniqueIdentifier>{d78f0bf2-43f4-466c-a842-c451e51a62e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_Contents\1_Actor">
+      <UniqueIdentifier>{54501faf-09a9-48b4-893e-89d171102ee2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_Contents\2_Map">
+      <UniqueIdentifier>{67825351-18a1-46d9-9e36-41ec29d35389}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="2_Contents\1_Actor\Component">
+      <UniqueIdentifier>{33d21223-66a5-48e3-8cd3-429719831171}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="EngineConst.h">
+      <Filter>0_Base</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineDebug.h">
+      <Filter>0_Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>1_Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="FightUnit.h">
+      <Filter>2_Contents\0_ContentsBase</Filter>
+    </ClInclude>
+    <ClInclude Include="StatusUnit.h">
+      <Filter>2_Contents\0_ContentsBase</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>2_Contents\1_Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>2_Contents\1_Actor</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>2_Contents\1_Actor\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="FightZone.h">
+      <Filter>2_Contents\2_Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Town.h">
+      <Filter>2_Contents\2_Map</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>2_Contents\2_Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Zone.h">
+      <Filter>2_Contents\2_Map</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
