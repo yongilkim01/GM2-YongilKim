@@ -1,6 +1,8 @@
 #include "World.h"
 #include "FightZone.h"
 #include "Town.h"
+#include "Player.h"
+
 #include <conio.h>
 
 
@@ -51,6 +53,8 @@ void UWorld::InPlayer(class UPlayer& _Player)
 			break;
 		}
 	}
+
+	_Player.SetName(InputName);
 
 	// 마지막맵까지 여기서 이 방식으로 가면
 	// 마을에 있을때 FightZone은 없어도 된다.
