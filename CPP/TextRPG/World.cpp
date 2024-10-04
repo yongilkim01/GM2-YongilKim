@@ -1,5 +1,4 @@
 #include "World.h"
-#include "Zone.h"
 #include "FightZone.h"
 #include "Town.h"
 #include "Player.h"
@@ -76,7 +75,6 @@ void UWorld::PlayerZonePlay(class UPlayer& _Player)
 {
 	UTown TownZone0;
 	TownZone0.SetName("초보마을");
-	CurrentZone = &TownZone0;
 
 	UTown TownZone1;
 	TownZone1.SetName("중급마을");
@@ -84,23 +82,25 @@ void UWorld::PlayerZonePlay(class UPlayer& _Player)
 	UFightZone FightZone;
 	FightZone.SetName("초보사냥터");
 
-	int resultZoneIndex = 0;
+	_Player.SetCurZone(0);
 
 	while (true)
 	{
-		resultZoneIndex = CurrentZone->InPlayer(_Player);
-		// 여기
-		if (resultZoneIndex == 2)
+		int SelectZone = _Player.GetCurZone();
+
+		switch (SelectZone)
 		{
-			CurrentZone = &TownZone0;
-		}
-		else if (resultZoneIndex == 3)
-		{
-			CurrentZone = &TownZone1;
-		}
-		else if (resultZoneIndex == 4)
-		{
-			CurrentZone = &FightZone;
+		case 0:
+			TownZone0.InPlayer(_Player);
+			break;
+		case 1:
+			TownZone1.InPlayer(_Player);
+			break;
+		case 2:
+			FightZone.InPlayer(_Player);
+			break;
+		default:
+			break;
 		}
 	}
 

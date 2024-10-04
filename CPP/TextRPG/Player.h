@@ -59,13 +59,22 @@ public:
 	//	// 그 클래스의 함수를 사용하면 헤더가 있어야 한다.
 	//	// Weapon->Test();
 	//}
+
+	void SetCurZone(int _Index)
+	{
+		CurZoneIndex = _Index;
+	}
+
+	int GetCurZone()
+	{
+		return CurZoneIndex;
+	}
+
 protected:
 
 private:
-// #include "Item.h" <= 절대 좋은거 아니다.
+	// #include "Item.h" <= 절대 좋은거 아니다.
 	class Item* Weapon = nullptr;
-
-
-
+	int CurZoneIndex = 0;
 };
 

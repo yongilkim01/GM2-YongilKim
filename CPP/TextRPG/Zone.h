@@ -7,5 +7,5 @@ class UZone : public UStatusUnit
 {
 public:
 	void InMsgPrint();
-	virtual int InPlayer(class UPlayer& _Player);
+
 };

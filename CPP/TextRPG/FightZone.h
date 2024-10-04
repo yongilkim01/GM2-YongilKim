@@ -5,6 +5,8 @@
 class UFightZone : public UZone
 {
 public:
-	virtual int InPlayer(class UPlayer& _Player) override;
+	int InPlayer(class UPlayer& _Player);
+
+private:
 };
 
