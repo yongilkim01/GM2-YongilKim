@@ -35,7 +35,7 @@ int UTown::InPlayer(class UPlayer& _Player)
 		case '3':
 			printf_s("아직 완성되지 않은 기능입니다.");
 			_getch();
-			return 0;
+			return 1;
 		default:
 			break;
 		}

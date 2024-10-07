@@ -5,9 +5,6 @@
     <ClCompile Include="Object.cpp">
       <Filter>1_Engine</Filter>
     </ClCompile>
-    <ClCompile Include="EngineConst.cpp">
-      <Filter>0_Base</Filter>
-    </ClCompile>
     <ClCompile Include="FightUnit.cpp">
       <Filter>2_Contents\0_ContentBase</Filter>
     </ClCompile>
@@ -34,6 +31,9 @@
     </ClCompile>
     <ClCompile Include="Zone.cpp">
       <Filter>2_Contents\2_Map</Filter>
+    </ClCompile>
+    <ClCompile Include="ContentsConst.cpp">
+      <Filter>0_Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -63,9 +63,6 @@
     <ClInclude Include="Object.h">
       <Filter>1_Engine</Filter>
     </ClInclude>
-    <ClInclude Include="EngineConst.h">
-      <Filter>0_Base</Filter>
-    </ClInclude>
     <ClInclude Include="FightUnit.h">
       <Filter>2_Contents\0_ContentBase</Filter>
     </ClInclude>
@@ -92,6 +89,9 @@
     </ClInclude>
     <ClInclude Include="Zone.h">
       <Filter>2_Contents\2_Map</Filter>
+    </ClInclude>
+    <ClInclude Include="ContentsConst.h">
+      <Filter>0_Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
