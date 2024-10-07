@@ -3,5 +3,7 @@
 
 class UMonster : public UFightUnit
 {
+public:
+	virtual void PrintStatus() override;
 };
 
