@@ -28,9 +28,8 @@ bool UZone::InterConnecting(UZone* _LinkZone)
 	// 기본이 저한테 기본입니다.
 	// 무식하게 짜세요.
 	// 디버깅
-
-	this->LinkZone[0] = _LinkZone;
-	_LinkZone->LinkZone[0] = this;
+	Connecting(_LinkZone);
+	_LinkZone->Connecting(this);
 
 	_LinkZone;
 	this;
