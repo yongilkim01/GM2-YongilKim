@@ -1,30 +1,34 @@
 #include "Actor.h"
+#include "Renderer.h"
 
 
 void AActor::BeginPlay()
 {
-
 }
+
 void AActor::Tick()
 {
 
 }
-void AActor::CollisionCheck(AActor* TargetActor)
+
+Renderer* AActor::CreateDefaultSubObject()
 {
+	ImageRenderer = new Renderer();
+	return ImageRenderer;
 }
+
 void AActor::Render(ConsoleImage* _BackBuffer)
 {
-	_BackBuffer->Copy(Pos, RenderImage);
+	if (nullptr == ImageRenderer)
+	{
+		return;
+	}
+	_BackBuffer->Copy(Pos, ImageRenderer->RenderImage);
 }
 
 void AActor::SetActorLocation(FIntPoint _Pos)
 {
 	Pos = _Pos;
-}
-
-FIntPoint AActor::GetActorLocation()
-{
-	return Pos;
 }
 
 void AActor::AddActorLocation(FIntPoint _Dir)
