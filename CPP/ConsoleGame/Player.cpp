@@ -7,7 +7,7 @@
 void Player::BeginPlay()
 {
 	Super::BeginPlay();
-	SetActorLocation({ 5, 5 });
+	SetActorLocation({ 10, 8 });
 	RenderImage.Create({1, 1}, '@');
 }
 
@@ -59,7 +59,7 @@ void Player::Tick()
 		case 'z':
 		{
 			Bullet* NewBullet = ConsoleEngine::GetEngine().SpawnActor<Bullet>();
-			NewBullet->SetActorLocation(GetActorLocation());
+			NewBullet->SetActorLocation(GetActorLocation() + FIntPoint::UP);
 			// 1. 총알이 플레이어 위치에 나오게 만드세요
 			// 2. 총알이 위쪽으로 올라가게 만드세요.
 			// NewBullet->SetActorLocation();
@@ -91,5 +91,9 @@ void Player::Tick()
 	}
 
 	// Pos += FIntPoint::RIGHT;
+}
+
+void Player::CollisionCheck(AActor* TargetActor)
+{
 }
 

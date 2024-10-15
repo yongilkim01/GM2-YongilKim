@@ -9,6 +9,9 @@ void AActor::Tick()
 {
 
 }
+void AActor::CollisionCheck(AActor* TargetActor)
+{
+}
 void AActor::Render(ConsoleImage* _BackBuffer)
 {
 	_BackBuffer->Copy(Pos, RenderImage);

@@ -10,6 +10,7 @@ class AActor
 public:
 	virtual void BeginPlay();
 	virtual void Tick();
+	virtual void CollisionCheck(AActor* TargetActor);
 
 	void Render(ConsoleImage* _BackBuffer);
 

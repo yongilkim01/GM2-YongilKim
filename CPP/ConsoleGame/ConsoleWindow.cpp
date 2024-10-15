@@ -8,7 +8,7 @@ UConsoleWindow::UConsoleWindow()
 
 void UConsoleWindow::SetScreenSize(int _X, int _Y)
 {
-	BackBuffer.Create(_X, _Y, '*');
+	BackBuffer.Create(_X, _Y, ' ');
 }
 
 void UConsoleWindow::BeginPlay()
@@ -20,7 +20,7 @@ void UConsoleWindow::Clear()
 {
 	// 프레임을 어거지로 늦출 겁니다.
 	system("cls");
-	BackBuffer.Clear('*');
+	BackBuffer.Clear(' ');
 }
 
 void UConsoleWindow::WindowSetPixel(int _X, int _Y, char _Text /*= '*'*/)

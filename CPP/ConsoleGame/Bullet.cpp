@@ -1,5 +1,5 @@
 #include "Bullet.h"
-
+#include <BaseSystem/EngineDebug.h>
 
 void Bullet::BeginPlay()
 {
@@ -11,4 +11,14 @@ void Bullet::Tick()
 {
 	Super::Tick();
 	SetActorLocation(GetActorLocation() + FIntPoint::UP);
+}
+
+void Bullet::CollisionCheck(AActor* Actor)
+{
+	if (GetActorLocation().X == Actor->GetActorLocation().X
+		&& GetActorLocation().Y == Actor->GetActorLocation().Y)
+	{
+		// TODO: 부수는 애니메이션
+		MSGASSERT("sdsds");
+	}
 }

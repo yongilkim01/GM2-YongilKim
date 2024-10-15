@@ -66,6 +66,7 @@ void ConsoleEngine::BeginPlay()
 	Window.SetScreenSize(WindowSize);
 
 	Player* NewPlayer = SpawnActor<Player>();
+	Monster* NewMonster = SpawnActor<Monster>();
 }
 
 void ConsoleEngine::Tick()
@@ -73,6 +74,19 @@ void ConsoleEngine::Tick()
 	for (size_t i = 0; i < AllActorVector.size(); i++)
 	{
 		AllActorVector[i]->Tick();
+	}
+
+	for (int i = 0; i < AllActorVector.size(); i++)
+	{
+		for (int j = 0; j < AllActorVector.size(); j++)
+		{
+			if (AllActorVector[i] != AllActorVector[j])
+			{
+				AllActorVector[i]->CollisionCheck(AllActorVector[j]);
+			}
+			//AllActorVector[i]->CollisionCheck(AllActorVector[j]);
+
+		}
 	}
 }
 
